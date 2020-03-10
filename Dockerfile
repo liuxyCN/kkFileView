@@ -24,11 +24,11 @@ RUN yum install -y kde-l10n-Chinese &&\
 	tar zxf /tmp/LibreOffice_6.4.1_Linux_x86-64_rpm_helppack_zh-CN.tar.gz &&\
 	tar zxf /tmp/LibreOffice_6.4.1_Linux_x86-64_rpm_langpack_zh-CN.tar.gz &&\
 	cd /tmp/LibreOffice_6.4.1.2_Linux_x86-64_rpm/RPMS &&\
-	rpm -Uvih *.rpm &&\
+	su -c 'yum install *.rpm' &&\
 	cd /tmp/LibreOffice_6.4.1.2_Linux_x86-64_rpm_langpack_zh-CN/RPMS &&\
-	rpm -Uvih *.rpm &&\
+	su -c 'yum install *.rpm' &&\
 	cd /tmp/LibreOffice_6.4.1.2_Linux_x86-64_rpm_helppack_zh-CN/RPMS &&\
-	rpm -Uvih *.rpm &&\
+	su -c 'yum install *.rpm' &&\
 
 	cd /usr/share/fonts/chinese &&\
 	mkfontscale &&\
@@ -40,5 +40,5 @@ ENV KKFILEVIEW_BIN_FOLDER /opt/kkFileView-2.2.0-SNAPSHOT/bin
 ENTRYPOINT ["java","-Dfile.encoding=UTF-8","-Dsun.java2d.cmm=sun.java2d.cmm.kcms.KcmsServiceProvider","-Dspring.config.location=/opt/kkFileView-2.2.0-SNAPSHOT/config/application.properties","-jar","/opt/kkFileView-2.2.0-SNAPSHOT/bin/kkFileView-2.2.0-SNAPSHOT.jar"]
 
 #mvn clean package -DskipTests -Prelease
-#docker build -t mymoyu/kkfileview:0.0.1-SNAPSHOT .
-#docker run -p 8012:8012 --name kkfileview --network whatever -d mymoyu/kkfileview:latest
+#docker build -t mymoyu/kkfileview:2.2.0-SNAPSHOT .
+#docker run -p 8012:8012 --name kkfileview --network whatever -d mymoyu/kkfileview
