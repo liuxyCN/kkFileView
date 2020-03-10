@@ -18,6 +18,8 @@ RUN yum install -y kde-l10n-Chinese &&\
 	yum install -y wget &&\
 	yum install -y libXext.x86_64 &&\
 	yum groupinstall -y "X Window System" &&\
+	yum provides '*/applydeltarpm' &&\
+    yum install  -y deltarpm &&\
 	cd /tmp &&\
 	wget https://mirrors.tuna.tsinghua.edu.cn/libreoffice/libreoffice/stable/6.4.1/rpm/x86_64/LibreOffice_6.4.1_Linux_x86-64_rpm.tar.gz &&\
 	wget https://mirrors.tuna.tsinghua.edu.cn/libreoffice/libreoffice/stable/6.4.1/rpm/x86_64/LibreOffice_6.4.1_Linux_x86-64_rpm_helppack_zh-CN.tar.gz &&\
@@ -31,7 +33,7 @@ RUN yum install -y kde-l10n-Chinese &&\
 	su -c 'yum install -y *.rpm' &&\
 	cd /tmp/LibreOffice_6.4.1.2_Linux_x86-64_rpm_helppack_zh-CN/RPMS &&\
 	su -c 'yum install -y *.rpm' &&\
-
+    ln -s libreoffice6.4 libreoffice &&\
 	cd /usr/share/fonts/chinese &&\
 	mkfontscale &&\
 	mkfontdir &&\
