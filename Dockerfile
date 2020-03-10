@@ -33,6 +33,7 @@ RUN yum install -y kde-l10n-Chinese &&\
 	su -c 'yum install -y *.rpm' &&\
 	cd /tmp/LibreOffice_6.4.1.2_Linux_x86-64_rpm_helppack_zh-CN/RPMS &&\
 	su -c 'yum install -y *.rpm' &&\
+	cd /opt &&\
     ln -s libreoffice6.4 libreoffice &&\
 	cd /usr/share/fonts/chinese &&\
 	mkfontscale &&\
