@@ -2,7 +2,11 @@ FROM centos:centos7
 MAINTAINER liuxyCN "lxy@live.cn"
 ADD jodconverter-web/target/kkFileView-*.tar.gz /opt/
 COPY fonts/* /usr/share/fonts/chinese/
-RUN yum install -y kde-l10n-Chinese &&\
+RUN yum install -y wget &&\
+    wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo &&\
+    sed -i -e '/mirrors.cloud.aliyuncs.com/d' -e '/mirrors.aliyuncs.com/d' /etc/yum.repos.d/CentOS-Base.repo &&\
+    yum makecache &&\
+    yum install -y kde-l10n-Chinese &&\
 	yum install -y glibc-common &&\
 	yum install -y freetype freetype-devel &&\
 	yum install -y gtk3-devel gtk3-devel-docs &&\
@@ -15,7 +19,6 @@ RUN yum install -y kde-l10n-Chinese &&\
 	LANG="zh_CN.UTF-8" &&\
 	ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &&\
 	yum install -y java-1.8.0-openjdk.x86_64 &&\
-	yum install -y wget &&\
 	yum install -y libXext.x86_64 &&\
 	yum groupinstall -y "X Window System" &&\
 	yum provides '*/applydeltarpm' &&\
